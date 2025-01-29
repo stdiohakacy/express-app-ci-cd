@@ -35,10 +35,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Minikube
-        uses: medyagh/setup-minikube@v0.0.15
-        with:
-          driver: docker
+      # - name: Set up Minikube
+      #   uses: medyagh/setup-minikube@v0.0.15
+      #   with:
+      #     driver: docker
 
       - name: Install Kustomize
         uses: syntaqx/setup-kustomize@v1
@@ -55,7 +55,6 @@ jobs:
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "GitHub Actions Bot"
           git add .
@@ -69,7 +68,7 @@ jobs:
 
       - name: Login to ArgoCD
         run: |
-          argocd login localhost:8080 --username admin --password luaO-LhVOxtUqSRj --insecure
+          argocd login localhost:8080 --username admin --password ${{ ARGOCD_PASSWORD }} --insecure
 
       - name: Deploy using ArgoCD
         run: |
