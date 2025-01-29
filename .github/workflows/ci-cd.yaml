@@ -28,7 +28,7 @@ jobs:
           docker push asd2321s2/express-api:${{ github.sha }}
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build
 
     steps:
