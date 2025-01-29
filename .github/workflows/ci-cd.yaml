@@ -24,8 +24,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t asd2321s2/express-api:latest .
-          docker push asd2321s2/express-api:latest
+          docker build -t asd2321s2/express-api:${{ github.sha }} .
+          docker push asd2321s2/express-api:${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -39,11 +39,6 @@ jobs:
         uses: syntaqx/setup-kustomize@v1
         with:
           kustomize-version: 5.0.1
-
-      - name: Setup ArgoCD CLI 
-        uses: imajeetyadav/argocd-cli@v1
-        with:
-          version: v2.5.7 # optional 
 
       - name: Update Kubernetes manifests with new image
         run: |
@@ -60,12 +55,10 @@ jobs:
           git commit -m "Update image version to ${{ github.sha }}" || echo "No changes to commit"
           git push https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}.git HEAD:main
 
-
-      # - name: Install ArgoCD CLI
-      #   run: |
-      #     curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
-      #     chmod +x argocd-linux-amd64
-      #     sudo mv argocd-linux-amd64 /usr/local/bin/argocd
+      - name: Setup ArgoCD CLI 
+        uses: imajeetyadav/argocd-cli@v1
+        with:
+          version: v2.5.7
 
       # - name: Deploy to ArgoCD
       #   env:
