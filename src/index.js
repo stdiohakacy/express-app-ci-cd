@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.send("Hello, ArgoCD + GitHub Actions + Minikube!");
+    res.send("Hello, ArgoCD + GitHub Actions + Minikube!!!@@@");
 });
 
 // Health check route
