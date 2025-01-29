@@ -39,7 +39,11 @@ jobs:
         uses: syntaqx/setup-kustomize@v1
         with:
           kustomize-version: 5.0.1
-        run: kustomize version
+
+      - name: Setup ArgoCD CLI 
+        uses: imajeetyadav/argocd-cli@v1
+        with:
+          version: v2.5.7 # optional 
 
       # - name: Update Kubernetes manifests with new image
       #   run: |
