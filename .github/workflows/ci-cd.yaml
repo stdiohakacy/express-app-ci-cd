@@ -37,9 +37,11 @@ jobs:
 
       - name: Install Kustomize
         run: |
-          curl -sLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/latest/download/kustomize_linux_amd64
+          wget -O kustomize https://github.com/kubernetes-sigs/kustomize/releases/latest/download/kustomize_linux_amd64
           chmod +x kustomize
-          sudo mv kustomize /usr/local/bin/
+          sudo mv kustomize /usr/local/bin/kustomize
+          kustomize version
+
 
       - name: Update Kubernetes manifests with new image
         run: |
@@ -53,9 +55,10 @@ jobs:
 
       - name: Install ArgoCD CLI
         run: |
-          curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
-          chmod +x argocd-linux-amd64
-          sudo mv argocd-linux-amd64 /usr/local/bin/argocd
+          wget -O argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+          chmod +x argocd
+          sudo mv argocd /usr/local/bin/argocd
+          argocd version --client
 
       # - name: Deploy to ArgoCD
       #   env:
