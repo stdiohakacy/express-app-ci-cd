@@ -69,7 +69,7 @@ jobs:
 
       - name: Login to ArgoCD
         run: |
-          argocd login localhost:8080 --username admin --password ${{ secrets.ARGOCD_PASSWORD }} --insecure
+          argocd login localhost:8080 --username admin --password luaO-LhVOxtUqSRj --insecure
 
       - name: Deploy using ArgoCD
         run: |
