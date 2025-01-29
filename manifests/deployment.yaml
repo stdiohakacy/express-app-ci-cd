@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: express-api
+  template:
+    metadata:
+      labels:
+        app: express-api
+    spec:
+      containers:
+        - name: express-api
+          image: asd2321s2/express-api:latest
+          ports:
+            - containerPort: 3000
+          # resources:
+          #   limits:
+          #     memory: "512Mi"
+          #     cpu: "500m"
+          #   requests:
+          #     memory: "256Mi"
+          #     cpu: "250m"
