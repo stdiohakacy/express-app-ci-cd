@@ -5,4 +5,4 @@ resources:
 - service.yaml
 images:
 - name: asd2321s2/express-api
-  newTag: b05a4c2a0eef863911007a2a14bd0297de4f70fc
+  newTag: 390ee0de30f6449aabd24851051afe4c2bae7a83
